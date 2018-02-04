@@ -1,11 +1,12 @@
 # logback-logstash-more-decorators
-Additional `Decorator`s for [logstash-logback-encoder]
+Additional `Decorators` for [logstash-logback-encoder].
 
+Features:
   * Syntax highlighting (and pretty printing)
   * Special field handling
     * Level: warn and error
 
-The primary use-case for this tool is coloring console output during testing. For productions setups, rather configure a encoder without a `Decorator` and use a proper visualization tool like [Kibana]. 
+The primary use-case for this tool is coloring console output during testing. For productions setups, rather configure a encoder without a `Decorator` and apply proper visualization tools like [Kibana]. 
 
 Use [conditional processing] to differentiate between different environments.
 
@@ -28,74 +29,74 @@ Add a [JsonGeneratorDecorator]:
 
 ```xml
 <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">
-	<encoder class="net.logstash.logback.encoder.LogstashEncoder">
-		<!-- add pretty-printing and syntax highlighting for testing -->
-		<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
-	</encoder>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+        <!-- add pretty-printing and syntax highlighting for testing -->
+        <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
+    </encoder>
 </appender>
 ```
 
 The default decorator is aware of the log-level and highlights `WARN` and `ERROR` with yellow and red background color. 
 
 ## Custom colors
-Define your own colors using
+Define your own colors using `LogLevelSingleSyntaxHighlighter`:
 
 ```xml
 <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
-	<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSingleSyntaxHighlighter">
-		<stringValue>blue</stringValue>
-		<numberValue>black highIntensity</numberValue>
-		<fieldName>red</fieldName>
-		<binaryValue>yellowBackground</binaryValue>
-		<booleanValue>cyan</booleanValue>
-		<nullValue>black</nullValue>
-		<curlyBrackets>green</curlyBrackets>
-		<squareBrackets>green</squareBrackets>
-		<colon>green</colon>
-		<whitespace>green</whitespace>
-		<comma>green</comma>
-	</syntaxHighlighterFactory>
+    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSingleSyntaxHighlighter">
+        <stringValue>blue</stringValue>
+        <numberValue>black highIntensity</numberValue>
+        <fieldName>red</fieldName>
+        <binaryValue>yellowBackground</binaryValue>
+        <booleanValue>cyan</booleanValue>
+        <nullValue>black</nullValue>
+        <curlyBrackets>green</curlyBrackets>
+        <squareBrackets>green</squareBrackets>
+        <colon>green</colon>
+        <whitespace>green</whitespace>
+        <comma>green</comma>
+    </syntaxHighlighterFactory>
 </jsonGeneratorDecorator>
  ```
 
-The below space-separated ANSI codes are supported.
+and space-separated foreground, background and style keys.
 
-### Text color
+### Foreground color
 | Key | Text color |
 | ----- | ----------- |
 | black | Black text |
-|red | Red text | 
-|green | Green text |
-|yellow | Yellow text |
-|blue | Blue text |
-|magenta | Magneta text |
-|cyan | Cyan text |
-|white | White text |
+| red | Red text | 
+| green | Green text |
+| yellow | Yellow text |
+| blue | Blue text |
+| magenta | Magneta text |
+| cyan | Cyan text |
+| white | White text |
 
 ### Background color
 | Key | Background color |
 | ----- | ----------- |
-|blackBackground | Black |
-|redBackground | Red |
-|greenBackground | Green |
-|yellowBackground | Yellow |
-|blueBackground | Blue |
-|magentaBackground | Magneta |
-|cyanBackground | Cyan | 
-|whiteBackground | White |
-
+| blackBackground | Black |
+| redBackground | Red |
+| greenBackground | Green |
+| yellowBackground | Yellow |
+| blueBackground | Blue |
+| magentaBackground | Magneta |
+| cyanBackground | Cyan | 
+| whiteBackground | White |
+ 
 ### Style
 | Key | Style |
 | ----- | ----------- |
-|highIntensity | High intensity (bold) |
-|lowIntensity | Low instensity |
-|italic | Italic
-|underline | Underline
-|blink| Blink |
+| highIntensity | High intensity (bold) |
+| lowIntensity | Low instensity |
+| italic | Italic
+| underline | Underline
+| blink| Blink |
 
 
 ## Details
-The `SyntaxHighlightingDecorator` supports a list of `syntaxHighlighterFactory` elements. The colors are appended in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return a full ANSI clear/reset.
+The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>` elements. The colors are applied in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return a full ANSI clear/reset.
 
 # History
 
