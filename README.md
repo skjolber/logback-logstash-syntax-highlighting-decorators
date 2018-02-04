@@ -39,11 +39,11 @@ Add a [JsonGeneratorDecorator]:
 The default decorator is aware of the log-level and highlights `WARN` and `ERROR` with yellow and red background color. 
 
 ## Custom colors
-Define your own colors using `LogLevelSingleSyntaxHighlighter`:
+Define your own colors using `LogLevelSyntaxHighlighter`:
 
 ```xml
 <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
-    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSingleSyntaxHighlighter">
+    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighter">
         <stringValue>blue</stringValue>
         <numberValue>black highIntensity</numberValue>
         <fieldName>red</fieldName>
@@ -96,7 +96,7 @@ and space-separated foreground, background and style keys.
 
 
 ## Details
-The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>` elements. The colors are applied in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return a full ANSI clear/reset.
+The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>` elements. The colors are applied in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return an ANSI reset (including escaping).
 
 # History
 

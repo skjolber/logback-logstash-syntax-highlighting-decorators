@@ -3,14 +3,14 @@ package com.github.skjolber.decorators.syntaxhighlight;
 import com.github.skjolber.jackson.jsh.AnsiSyntaxHightlight;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
-public class LogLevelSingleSyntaxHighlighter extends DelegateSyntaxHighlighter {
+public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 
 	private static final String WARN = AnsiSyntaxHightlight.build(AnsiSyntaxHightlight.BACKGROUND_YELLOW, AnsiSyntaxHightlight.WHITE);
 	private static final String ERROR = AnsiSyntaxHightlight.build(AnsiSyntaxHightlight.BACKGROUND_RED, AnsiSyntaxHightlight.WHITE);
 
 	private boolean isFieldName;
 
-	public LogLevelSingleSyntaxHighlighter(SyntaxHighlighter delegate) {
+	public LogLevelSyntaxHighlighter(SyntaxHighlighter delegate) {
 		super(delegate);
 	}
 
