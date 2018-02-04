@@ -1,4 +1,4 @@
-# logback-logstash-more-decorators
+# logback-logstash-syntax-highlighting-decorators
 Additional `Decorators` for [logstash-logback-encoder].
 
 Features:
@@ -18,8 +18,8 @@ The project is based on [Maven] and is available at central Maven repository.
 
 ```xml
 <dependency>
-    <groupId>com.github.skjolber.logback-logstash-more-decorators</groupId>
-    <artifactId>logback-logstash-more-decorators</artifactId>
+    <groupId>com.github.skjolber.logback-logstash-syntax-highlighting-decorators</groupId>
+    <artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -31,7 +31,7 @@ Add a [JsonGeneratorDecorator]:
 <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
         <!-- add pretty-printing and syntax highlighting for testing -->
-        <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
+        <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator"/>
     </encoder>
 </appender>
 ```
@@ -103,9 +103,9 @@ The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>
  - [1.0.0]: Initial version
 
 [Apache 2.0]:          		http://www.apache.org/licenses/LICENSE-2.0.html
-[issue-tracker]:       		https://github.com/skjolber/logback-logstash-more-decorators/issues
+[issue-tracker]:       		https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators/issues
 [Maven]:                	http://maven.apache.org/
-[1.0.0]:					https://github.com/skjolber/logback-logstash-more-decorators/releases/tag/logback-logstash-more-decorators-1.0.0
+[1.0.0]:					https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators/releases/tag/logback-logstash-syntax-highlighting-decorators-1.0.0
 [jackson-syntax-highlight]:	https://github.com/skjolber/jackson-syntax-highlight
 [Jackson]:					https://github.com/FasterXML/jackson
 [ANSI]:						https://en.wikipedia.org/wiki/ANSI_escape_code
