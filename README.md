@@ -4,9 +4,10 @@ Additional `Decorator`s for [logstash-logback-encoder]
   * Syntax highlighting (and pretty printing)
   * Special field handling
     * Level: warn and error
-    * Message: highlight
 
 The primary use-case for this tool is coloring console output during testing. For productions setups, rather configure a encoder without a `Decorator` and use a proper visualization tool like [Kibana]. 
+
+Use [conditional processing] to differentiate between different environments.
 
 ## License
 [Apache 2.0]
@@ -23,7 +24,7 @@ The project is based on [Maven] and is available at central Maven repository.
 ```
 
 # Usage
-The highlighters are instances of [JsonGeneratorDecorator]. Configuration would look something like
+Add a [JsonGeneratorDecorator]:
 
 ```xml
 <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">
@@ -34,39 +35,32 @@ The highlighters are instances of [JsonGeneratorDecorator]. Configuration would 
 </appender>
 ```
 
-If you prefer to configure the colors yourself, supply an instance of `SyntaxHighlighterFactory`, and configure
+The default decorator is aware of the log-level and highlights `WARN` and `ERROR` with yellow and red background color. 
 
-```
-<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
-	<syntaxHighlighterFactory class="com.example.MySyntaxHighlighterFactory"/>
+## Custom colors
+Define your own colors using
+
+```xml
+<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
+	<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSingleSyntaxHighlighter">
+		<stringValue>blue</stringValue>
+		<numberValue>black highIntensity</numberValue>
+		<fieldName>red</fieldName>
+		<binaryValue>yellowBackground</binaryValue>
+		<booleanValue>cyan</booleanValue>
+		<nullValue>black</nullValue>
+		<curlyBrackets>green</curlyBrackets>
+		<squareBrackets>green</squareBrackets>
+		<colon>green</colon>
+		<whitespace>green</whitespace>
+		<comma>green</comma>
+	</syntaxHighlighterFactory>
 </jsonGeneratorDecorator>
-```
+ ```
 
-Then create instances of `SyntaxHighlighter` on `SyntaxHighlighterFactory.createSyntaxHighlighter(..)`. 
+The below space-separated ANSI codes are supported.
 
-Use [conditional processing] to differentiate between different environments.
-
-## Details
-The `SyntaxHighlightingDecorator` supports a list of `syntaxHighlighterFactory` elements. The resulting list of `SyntaxHighlighter` ANSI colors are appended in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return ANSI clear/reset .
-
-Use `LogbackSyntaxHighlighterFactory` for your own colors; for the syntax designators:
-
-| Key | Name |
-|-----|------|
-| fieldName | Field name |
-| binaryValue | Binary value |
-| booleanValue | Boolean value |
-| nullValue| Null value |
-| numberValue| Number value |
-| stringValue| Textual value |
-| curlyBrackets| Object start / end |
-| squareBrackets| Array start / end |
-| colon| Field separator |
-| whitespace| Whitespace |
-| comma| Field entity separator |
-
-use the following ANSI keys (with space seperators):
-
+### Text color
 | Key | Text color |
 | ----- | ----------- |
 | black | Black text |
@@ -78,6 +72,7 @@ use the following ANSI keys (with space seperators):
 |cyan | Cyan text |
 |white | White text |
 
+### Background color
 | Key | Background color |
 | ----- | ----------- |
 |blackBackground | Black |
@@ -89,14 +84,18 @@ use the following ANSI keys (with space seperators):
 |cyanBackground | Cyan | 
 |whiteBackground | White |
 
+### Style
 | Key | Style |
 | ----- | ----------- |
-|highIntensity | High intensity (bold? |
+|highIntensity | High intensity (bold) |
 |lowIntensity | Low instensity |
 |italic | Italic
 |underline | Underline
 |blink| Blink |
 
+
+## Details
+The `SyntaxHighlightingDecorator` supports a list of `syntaxHighlighterFactory` elements. The colors are appended in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return a full ANSI clear/reset.
 
 # History
 

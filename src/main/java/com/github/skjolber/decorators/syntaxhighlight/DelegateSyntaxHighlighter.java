@@ -5,17 +5,12 @@ import java.math.BigInteger;
 
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
-public class FieldSyntaxHighlighter extends DelegateSyntaxHighlighter {
+public abstract class DelegateSyntaxHighlighter implements SyntaxHighlighter {
 
-	private final SyntaxHighlighter base;
-	private final SyntaxHighlighter field;
-	private final String fieldName;
+	protected SyntaxHighlighter delegate;
 
-	public FieldSyntaxHighlighter(SyntaxHighlighter base, String fieldName, SyntaxHighlighter value) {
-		super(base);
-		this.base = base;
-		this.fieldName = fieldName;
-		this.field = value;
+	public DelegateSyntaxHighlighter(SyntaxHighlighter delegate) {
+		this.delegate = delegate;
 	}
 
 	@Override
@@ -45,11 +40,6 @@ public class FieldSyntaxHighlighter extends DelegateSyntaxHighlighter {
 
 	@Override
 	public String forFieldName(String value) {
-		if(fieldName.equals(value)) {
-			this.delegate = field;
-		} else {
-			this.delegate = base;
-		}
 		return delegate.forFieldName(value);
 	}
 

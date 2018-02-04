@@ -6,13 +6,83 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.github.skjolber.jackson.jsh.AnsiSyntaxHightlight;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter.Builder;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
 import net.logstash.logback.encoder.org.apache.commons.lang.StringEscapeUtils;
 
-public class LogbackSyntaxHighlisterFactory implements SyntaxHighlighterFactory {
+/**
+ * Configurable syntax highlighter factory.
+ * <br/><br/>
+ * <table summary="" style="border: 1px solid">
+ * 	<thead>
+ * 		<tr>
+ * 			<th>Key</th>
+ * 			<th>Name</th>
+ * 		</tr>
+ * 	</thead>
+ * 	<tbody>
+ * 		<tr>
+ * 			<td>fieldName</td>
+ * 			<td>Field name</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>binaryValue</td>
+ * 			<td>Binary value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>booleanValue</td>
+ * 			<td>Boolean value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>nullValue</td>
+ * 			<td>Null value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>numberValue</td>
+ * 			<td>Number value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>stringValue</td>
+ * 			<td>Textual value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>curlyBrackets</td>
+ * 			<td>Object start / end</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>squareBrackets</td>
+ * 			<td>Array start / end</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>colon</td>
+ * 			<td>Field separator</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>whitespace</td>
+ * 			<td>Whitespace</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>comma</td>
+ * 			<td>Field entity separator</td>
+ * 		</tr>
+ * 	</tbody>
+ * </table>
+ * 
+ * 
+ */
 
-	protected DefaultSyntaxHighlighter.Builder builder = DefaultSyntaxHighlighter.newBuilder();
+public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
+
+	protected DefaultSyntaxHighlighter.Builder builder;
+	
+	public ConfigurableSyntaxHighlighterFactory() {
+		this(DefaultSyntaxHighlighter.newBuilder());
+	}
+	
+	public ConfigurableSyntaxHighlighterFactory(Builder builder) {
+		this.builder = builder;
+	}
 
 	private String[] parseColors(String text) {
 		List<String> result = new ArrayList<String>();
@@ -20,12 +90,7 @@ public class LogbackSyntaxHighlisterFactory implements SyntaxHighlighterFactory 
 		String[] splits = text.split("\\s+");
 		
 		for(String split : splits) {
-			String code;
-			if(split.startsWith("\\")) {
-				code = StringEscapeUtils.escapeJava(split);
-			} else {
-				code = parseAnsi(split);
-			}
+			String code = parseColor(split);
 			
 			if(!code.equals(AnsiSyntaxHightlight.CLEAR)) {
 				result.add(code);
@@ -35,7 +100,17 @@ public class LogbackSyntaxHighlisterFactory implements SyntaxHighlighterFactory 
 		return result.toArray(new String[result.size()]);
 	}
 
-	private String parseAnsi(String split) {
+	protected String parseColor(String split) {
+		String code;
+		if(split.startsWith("\\")) {
+			code = StringEscapeUtils.escapeJava(split);
+		} else {
+			code = parseAnsi(split);
+		}
+		return code;
+	}
+
+	protected String parseAnsi(String split) {
 		switch(split) {
 		    case "black" : return AnsiSyntaxHightlight.BLACK;
 		    case "red" : return AnsiSyntaxHightlight.RED;
@@ -109,6 +184,10 @@ public class LogbackSyntaxHighlisterFactory implements SyntaxHighlighterFactory 
 
 	public void setComma(String comma) {
 		builder.withComma(parseColors(comma));
+	}
+
+	public void setBackground(String background) {
+		builder.withBackground(parseColor(background));
 	}
 
 	@Override

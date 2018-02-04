@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighter;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
@@ -17,12 +18,6 @@ import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
 public class ListSyntaxHighlighterFactoryTest {
 
-	public void testDefault() {
-		ListSyntaxHighlighterFactory factory = new ListSyntaxHighlighterFactory();
-		
-		assertNotNull(factory.createSyntaxHighlighter(null));
-	}
-	
 	@Test
 	public void testSingle() {
 		ListSyntaxHighlighterFactory factory = new ListSyntaxHighlighterFactory();

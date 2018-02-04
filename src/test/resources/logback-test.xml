@@ -4,16 +4,19 @@
 		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
 			<!-- add pretty-printing with syntax highlighting -->
             <!-- remove unnecessary fields in testing -->
-            <fieldNames>
-            	<levelValue>[ignore]</levelValue>
-            	<version>[ignore]</version>
-            </fieldNames>
 			<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
-				<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogbackSyntaxHighlisterFactory">
+				<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory">
 					<stringValue>blue</stringValue>
-				</syntaxHighlighterFactory>
-				<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogbackSyntaxHighlisterFactory">
-					<stringValue>blue</stringValue>
+					<numberValue>black highIntensity</numberValue>
+					<fieldName>red</fieldName>
+					<binaryValue>yellow</binaryValue>
+					<booleanValue>cyan</booleanValue>
+					<nullValue>black</nullValue>
+					<curlyBrackets>green</curlyBrackets>
+					<squareBrackets>green</squareBrackets>
+					<colon>green</colon>
+					<whitespace>green</whitespace>
+					<comma>green</comma>
 				</syntaxHighlighterFactory>
 			</jsonGeneratorDecorator>
 		</encoder>

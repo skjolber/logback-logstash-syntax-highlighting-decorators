@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.github.skjolber.decorators.factory.ListJsonStreamContextListener;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighter;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
+import com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
 import com.github.skjolber.jackson.jsh.JsonStreamContextListener;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
@@ -16,7 +17,17 @@ import net.logstash.logback.decorate.JsonGeneratorDecorator;
 
 public class SyntaxHighlightingDecorator extends ListSyntaxHighlighterFactory implements JsonGeneratorDecorator {
 
-    @Override
+	protected SyntaxHighlighterFactory defaultSyntaxHighlighterFactory;
+
+	public SyntaxHighlightingDecorator(SyntaxHighlighterFactory defaultSyntaxHighlighterFactory) {
+		this.defaultSyntaxHighlighterFactory = defaultSyntaxHighlighterFactory;
+	}
+	
+	public SyntaxHighlightingDecorator() {
+		this(new LogLevelSyntaxHighlighterFactory());
+	}
+
+	@Override
     public JsonGenerator decorate(JsonGenerator generator) {
     	SyntaxHighlighter instance = createSyntaxHighlighter(generator);
     	
@@ -44,6 +55,18 @@ public class SyntaxHighlightingDecorator extends ListSyntaxHighlighterFactory im
         return new SyntaxHighlightingJsonGenerator(generator, instance);
 
     }
+	
+	@Override
+	public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
+		if(factories.isEmpty()) {
+			return createDefaultSyntaxHighlighter(generator);
+		}
+		return super.createSyntaxHighlighter(generator);
+	}
+	
+	protected SyntaxHighlighter createDefaultSyntaxHighlighter(JsonGenerator generator) {
+		return defaultSyntaxHighlighterFactory.createSyntaxHighlighter(generator);
+	}
 
 	public void addSyntaxHighlighterFactory(SyntaxHighlighterFactory factory) {
 		factories.add(factory);
