@@ -6,9 +6,9 @@ Features:
   * Special field handling
     * Level: warn and error
 
-The primary use-case for this tool is coloring console output during local development. For productions setups, rather configure a encoder without a `Decorator` and apply proper visualization tools like [Kibana]. 
+The primary use-case for this tool is coloring JSON console-output during local development / unit testing.
 
-Use [conditional processing] to differentiate between different environments.
+In production rather configure an encoder without a `Decorator` and apply proper visualization tools like [Kibana] - use [conditional processing] to differentiate between different environments.
 
 ## License
 [Apache 2.0]
@@ -97,6 +97,19 @@ and space-separated foreground, background and style keys.
 
 ## Details
 The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>` elements. The colors are applied in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return an ANSI reset (including escaping).
+
+## Tips and tricks
+Some built-in JSON fields are perhaps not very interesting during testing. Exclude them using 
+
+```xml
+<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+    <!-- remove unnecessary fields in testing -->
+    <fieldNames>
+    	<levelValue>[ignore]</levelValue>
+    	<version>[ignore]</version>
+    </fieldNames>
+</encoder>
+```
 
 # History
 
