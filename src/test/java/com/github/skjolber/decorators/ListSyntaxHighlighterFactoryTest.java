@@ -2,13 +2,11 @@ package com.github.skjolber.decorators;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighter;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;

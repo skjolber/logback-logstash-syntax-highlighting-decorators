@@ -64,7 +64,7 @@ import net.logstash.logback.encoder.org.apache.commons.lang.StringEscapeUtils;
  * 		</tr>
  * 		<tr>
  * 			<td>comma</td>
- * 			<td>Field entity separator</td>
+ * 			<td>Field entry separator</td>
  * 		</tr>
  * 	</tbody>
  * </table>

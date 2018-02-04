@@ -7,8 +7,6 @@ import java.util.List;
 import com.github.skjolber.jackson.jsh.AnsiSyntaxHightlight;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
-
 public class ListSyntaxHighlighter implements SyntaxHighlighter {
 
 	protected static final String CLEAR_START = AnsiSyntaxHightlight.ESC_START + AnsiSyntaxHightlight.CLEAR;
