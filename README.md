@@ -6,7 +6,7 @@ Features:
   * Special field handling
     * Level: warn and error
 
-The primary use-case for this tool is coloring console output during testing. For productions setups, rather configure a encoder without a `Decorator` and apply proper visualization tools like [Kibana]. 
+The primary use-case for this tool is coloring console output during local development. For productions setups, rather configure a encoder without a `Decorator` and apply proper visualization tools like [Kibana]. 
 
 Use [conditional processing] to differentiate between different environments.
 

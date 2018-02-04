@@ -13,7 +13,7 @@ import net.logstash.logback.encoder.org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * Configurable syntax highlighter factory.
- * <br/><br/>
+ * <br><br>
  * <table summary="" style="border: 1px solid">
  * 	<thead>
  * 		<tr>
