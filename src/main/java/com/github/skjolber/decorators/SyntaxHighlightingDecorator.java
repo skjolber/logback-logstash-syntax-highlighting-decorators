@@ -1,24 +1,41 @@
 package com.github.skjolber.decorators;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
+import com.github.skjolber.decorators.factory.ListJsonStreamContextListener;
+import com.github.skjolber.decorators.factory.ListSyntaxHighlighter;
+import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
+import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
 import com.github.skjolber.jackson.jsh.JsonStreamContextListener;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.SyntaxHighlightingJsonGenerator;
 
 import net.logstash.logback.decorate.JsonGeneratorDecorator;
 
-public class SyntaxHighlightingDecorator implements JsonGeneratorDecorator {
-
-	private Class<? extends SyntaxHighlighter> syntaxHighlighter;
+public class SyntaxHighlightingDecorator extends ListSyntaxHighlighterFactory implements JsonGeneratorDecorator {
 
     @Override
     public JsonGenerator decorate(JsonGenerator generator) {
-    	SyntaxHighlighter instance = null;
-    	if(syntaxHighlighter != null) {
-    		instance = createSyntaxHighlighter();
-    	} else {
-    		instance = new DefaultSyntaxHighlighter();
+    	SyntaxHighlighter instance = createSyntaxHighlighter(generator);
+    	
+    	// check whether we need to add context listeners too
+    	if(instance instanceof ListSyntaxHighlighter) {
+    		ListSyntaxHighlighter list = (ListSyntaxHighlighter)instance;
+
+    		List<JsonStreamContextListener> listeners = new ArrayList<>(factories.size());
+    		for(SyntaxHighlighter h : list.getList()) {
+    			if(h instanceof JsonStreamContextListener) {
+    				listeners.add((JsonStreamContextListener)h);
+    			}
+    		}
+    		if(!listeners.isEmpty()) {
+    			if(listeners.size() == 1) {
+    	            return new SyntaxHighlightingJsonGenerator(generator, instance, listeners.get(0));
+    			}
+                return new SyntaxHighlightingJsonGenerator(generator, instance, new ListJsonStreamContextListener(listeners));
+    		}
     	}
     	
     	if(instance instanceof JsonStreamContextListener) {
@@ -28,25 +45,7 @@ public class SyntaxHighlightingDecorator implements JsonGeneratorDecorator {
 
     }
 
-	private SyntaxHighlighter createSyntaxHighlighter() {
-		try {
-			return (SyntaxHighlighter)syntaxHighlighter.newInstance();
-		} catch (Exception e) {
-			throw new IllegalArgumentException(e);
-		}
+	public void addSyntaxHighlighterFactory(SyntaxHighlighterFactory factory) {
+		factories.add(factory);
 	}
-
-	public void setSyntaxHighlighter(String syntaxHighlighter) {
-		try {
-			this.syntaxHighlighter = (Class<? extends SyntaxHighlighter>) Class.forName(syntaxHighlighter);
-		} catch (ClassNotFoundException e) {
-			throw new IllegalArgumentException(e);
-		}
-	}
-    
-    public String getSyntaxHighlighter() {
-		return syntaxHighlighter.getName();
-	}
-    
-
 }

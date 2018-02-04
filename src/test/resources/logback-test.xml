@@ -9,7 +9,12 @@
             	<version>[ignore]</version>
             </fieldNames>
 			<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
-				<syntaxHighlighter>com.github.skjolber.decorators.syntaxhighlight.MessageSyntaxHighlighter</syntaxHighlighter>
+				<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogbackSyntaxHighlisterFactory">
+					<stringValue>blue</stringValue>
+				</syntaxHighlighterFactory>
+				<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogbackSyntaxHighlisterFactory">
+					<stringValue>blue</stringValue>
+				</syntaxHighlighterFactory>
 			</jsonGeneratorDecorator>
 		</encoder>
     </appender>

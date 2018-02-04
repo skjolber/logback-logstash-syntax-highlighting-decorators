@@ -5,8 +5,11 @@ import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
 
 public class LogLevelSingleSyntaxHighlighter extends DefaultSyntaxHighlighter {
 
+	private static final String WARN = AnsiSyntaxHightlight.build(AnsiSyntaxHightlight.BACKGROUND_YELLOW, AnsiSyntaxHightlight.WHITE);
+	private static final String ERROR = AnsiSyntaxHightlight.build(AnsiSyntaxHightlight.BACKGROUND_RED, AnsiSyntaxHightlight.HIGH_INTENSITY, AnsiSyntaxHightlight.WHITE);
+
 	private boolean isFieldName;
-	
+
 	@Override
 	public String forFieldName(String value) {
 		this.isFieldName = true;
@@ -21,11 +24,10 @@ public class LogLevelSingleSyntaxHighlighter extends DefaultSyntaxHighlighter {
 			
 			if(string != null) {
 				if(string.equals("WARN")) {
-					return AnsiSyntaxHightlight.SANE + AnsiSyntaxHightlight.BACKGROUND_YELLOW + AnsiSyntaxHightlight.WHITE;
+					return WARN;
 				} else if(string.equals("ERROR")) {
-					return AnsiSyntaxHightlight.SANE + AnsiSyntaxHightlight.BACKGROUND_RED + AnsiSyntaxHightlight.HIGH_INTENSITY + AnsiSyntaxHightlight.WHITE;
+					return ERROR;
 				}
-
 			}
 		}
 		return super.forString(string);
