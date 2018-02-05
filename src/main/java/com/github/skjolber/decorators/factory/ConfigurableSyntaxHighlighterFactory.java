@@ -124,6 +124,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		    case "magenta" : return AnsiSyntaxHighlight.MAGENTA;
 		    case "cyan" : return AnsiSyntaxHighlight.CYAN;
 		    case "white" : return AnsiSyntaxHighlight.WHITE;
+		    case "default" : return AnsiSyntaxHighlight.DEFAULT;
 		    
 		    case "blackBackground" : return AnsiSyntaxHighlight.BACKGROUND_BLACK;
 		    case "redBackground" : return AnsiSyntaxHighlight.BACKGROUND_RED;
@@ -133,6 +134,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		    case "magentaBackground" : return AnsiSyntaxHighlight.BACKGROUND_MAGENTA;
 		    case "cyanBackground" : return AnsiSyntaxHighlight.BACKGROUND_CYAN;
 		    case "whiteBackground" : return AnsiSyntaxHighlight.BACKGROUND_WHITE;
+		    case "defaultBackground" : return AnsiSyntaxHighlight.BACKGROUND_DEFAULT;
 
 		    case "highIntensity" : return AnsiSyntaxHighlight.HIGH_INTENSITY;
 		    case "lowIntensity" : return AnsiSyntaxHighlight.LOW_INTENSITY;
@@ -140,7 +142,6 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		    case "italic" : return AnsiSyntaxHighlight.ITALIC;
 		    case "underline" : return AnsiSyntaxHighlight.UNDERLINE;
 		    case "blink" : return AnsiSyntaxHighlight.BLINK;
-
 		}		
 		
 		throw new IllegalArgumentException("Unknown ANSI color '" + split + "'");
