@@ -23,7 +23,7 @@ The project is based on [Maven] and is available at central Maven repository.
 <dependency>
     <groupId>com.github.skjolber.logback-logstash-syntax-highlighting-decorators</groupId>
     <artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
