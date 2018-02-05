@@ -66,12 +66,12 @@ and space-separated foreground, background and style keys. For special focus on 
 ```xml
 <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
     <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighter">
-		<level>
-			<info>green</info>
-			<warning>yellow</warning>
-			<error>red</error>
-		</level>
-		<message>highIntensity blue</message>
+        <level>
+            <info>green</info>
+            <warning>yellow</warning>
+            <error>red</error>
+        </level>
+        <message>highIntensity blue</message>
     </syntaxHighlighterFactory>
 </jsonGeneratorDecorator>
 ```
@@ -79,6 +79,7 @@ and space-separated foreground, background and style keys. For special focus on 
 ### Foreground color
 | Key | Text color |
 | ----- | ----------- |
+| default | Default text |
 | black | Black text |
 | red | Red text | 
 | green | Green text |
@@ -91,6 +92,7 @@ and space-separated foreground, background and style keys. For special focus on 
 ### Background color
 | Key | Background color |
 | ----- | ----------- |
+| defaultBackground | Default |
 | blackBackground | Black |
 | redBackground | Red |
 | greenBackground | Green |
@@ -114,14 +116,14 @@ and space-separated foreground, background and style keys. For special focus on 
 The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>` elements. The colors are applied in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return an ANSI reset (including escaping).
 
 ## Tips and tricks
-Some built-in JSON fields are perhaps not very interesting during testing. Exclude them using 
+Exclude fields with low information value during testing. For example: 
 
 ```xml
 <encoder class="net.logstash.logback.encoder.LogstashEncoder">
     <!-- remove unnecessary fields in testing -->
     <fieldNames>
-    	<levelValue>[ignore]</levelValue>
-    	<version>[ignore]</version>
+        <levelValue>[ignore]</levelValue>
+        <version>[ignore]</version>
     </fieldNames>
 </encoder>
 ```
