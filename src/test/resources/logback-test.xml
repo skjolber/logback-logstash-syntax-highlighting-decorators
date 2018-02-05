@@ -1,4 +1,4 @@
-<configuration>
+<configuration debug="true">
     <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">
    
 		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
@@ -17,7 +17,13 @@
 					<colon>green</colon>
 					<whitespace>green</whitespace>
 					<comma>green</comma>
-				</syntaxHighlighterFactory>
+					<level>
+						<info>green</info>
+						<warning>yellow</warning>
+						<error>red</error>
+					</level>
+					<message>highIntensity blue</message>
+ 				</syntaxHighlighterFactory>
 			</jsonGeneratorDecorator>
 		</encoder>
     </appender>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHightlight;
+import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter.Builder;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
@@ -66,6 +66,10 @@ import net.logstash.logback.encoder.org.apache.commons.lang.StringEscapeUtils;
  * 			<td>comma</td>
  * 			<td>Field entry separator</td>
  * 		</tr>
+ * 		<tr>
+ * 			<td>background</td>
+ * 			<td>Background color for all fields</td>
+ * 		</tr>
  * 	</tbody>
  * </table>
  * 
@@ -84,7 +88,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		this.builder = builder;
 	}
 
-	private String[] parseColors(String text) {
+	protected static String[] parseColors(String text) {
 		List<String> result = new ArrayList<String>();
 		
 		String[] splits = text.split("\\s+");
@@ -92,7 +96,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		for(String split : splits) {
 			String code = parseColor(split);
 			
-			if(!code.equals(AnsiSyntaxHightlight.CLEAR)) {
+			if(!code.equals(AnsiSyntaxHighlight.CLEAR)) {
 				result.add(code);
 			}
 		}
@@ -100,7 +104,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		return result.toArray(new String[result.size()]);
 	}
 
-	protected String parseColor(String split) {
+	protected static String parseColor(String split) {
 		String code;
 		if(split.startsWith("\\")) {
 			code = StringEscapeUtils.escapeJava(split);
@@ -110,32 +114,32 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		return code;
 	}
 
-	protected String parseAnsi(String split) {
+	protected static String parseAnsi(String split) {
 		switch(split) {
-		    case "black" : return AnsiSyntaxHightlight.BLACK;
-		    case "red" : return AnsiSyntaxHightlight.RED;
-		    case "green" : return AnsiSyntaxHightlight.GREEN;
-		    case "yellow" : return AnsiSyntaxHightlight.YELLOW;
-		    case "blue" : return AnsiSyntaxHightlight.BLUE;
-		    case "magenta" : return AnsiSyntaxHightlight.MAGENTA;
-		    case "cyan" : return AnsiSyntaxHightlight.CYAN;
-		    case "white" : return AnsiSyntaxHightlight.WHITE;
+		    case "black" : return AnsiSyntaxHighlight.BLACK;
+		    case "red" : return AnsiSyntaxHighlight.RED;
+		    case "green" : return AnsiSyntaxHighlight.GREEN;
+		    case "yellow" : return AnsiSyntaxHighlight.YELLOW;
+		    case "blue" : return AnsiSyntaxHighlight.BLUE;
+		    case "magenta" : return AnsiSyntaxHighlight.MAGENTA;
+		    case "cyan" : return AnsiSyntaxHighlight.CYAN;
+		    case "white" : return AnsiSyntaxHighlight.WHITE;
 		    
-		    case "blackBackground" : return AnsiSyntaxHightlight.BACKGROUND_BLACK;
-		    case "redBackground" : return AnsiSyntaxHightlight.BACKGROUND_RED;
-		    case "greenBackground" : return AnsiSyntaxHightlight.BACKGROUND_GREEN;
-		    case "yellowBackground" : return AnsiSyntaxHightlight.BACKGROUND_YELLOW;
-		    case "blueBackground" : return AnsiSyntaxHightlight.BACKGROUND_BLUE;
-		    case "magentaBackground" : return AnsiSyntaxHightlight.BACKGROUND_MAGENTA;
-		    case "cyanBackground" : return AnsiSyntaxHightlight.BACKGROUND_CYAN;
-		    case "whiteBackground" : return AnsiSyntaxHightlight.BACKGROUND_WHITE;
+		    case "blackBackground" : return AnsiSyntaxHighlight.BACKGROUND_BLACK;
+		    case "redBackground" : return AnsiSyntaxHighlight.BACKGROUND_RED;
+		    case "greenBackground" : return AnsiSyntaxHighlight.BACKGROUND_GREEN;
+		    case "yellowBackground" : return AnsiSyntaxHighlight.BACKGROUND_YELLOW;
+		    case "blueBackground" : return AnsiSyntaxHighlight.BACKGROUND_BLUE;
+		    case "magentaBackground" : return AnsiSyntaxHighlight.BACKGROUND_MAGENTA;
+		    case "cyanBackground" : return AnsiSyntaxHighlight.BACKGROUND_CYAN;
+		    case "whiteBackground" : return AnsiSyntaxHighlight.BACKGROUND_WHITE;
 
-		    case "highIntensity" : return AnsiSyntaxHightlight.HIGH_INTENSITY;
-		    case "lowIntensity" : return AnsiSyntaxHightlight.LOW_INTENSITY;
+		    case "highIntensity" : return AnsiSyntaxHighlight.HIGH_INTENSITY;
+		    case "lowIntensity" : return AnsiSyntaxHighlight.LOW_INTENSITY;
 
-		    case "italic" : return AnsiSyntaxHightlight.ITALIC;
-		    case "underline" : return AnsiSyntaxHightlight.UNDERLINE;
-		    case "blink" : return AnsiSyntaxHightlight.BLINK;
+		    case "italic" : return AnsiSyntaxHighlight.ITALIC;
+		    case "underline" : return AnsiSyntaxHighlight.UNDERLINE;
+		    case "blink" : return AnsiSyntaxHighlight.BLINK;
 
 		}		
 		

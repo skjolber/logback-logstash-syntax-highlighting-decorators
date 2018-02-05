@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
 public class ListSyntaxHighlighterFactory implements SyntaxHighlighterFactory {

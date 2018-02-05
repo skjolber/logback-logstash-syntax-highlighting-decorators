@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.github.skjolber.decorators.factory.ListJsonStreamContextListener;
-import com.github.skjolber.decorators.factory.ListSyntaxHighlighter;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
+import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.JsonStreamContextListener;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.SyntaxHighlightingJsonGenerator;

@@ -7,10 +7,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.decorators.factory.ListSyntaxHighlighter;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHightlight;
+import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
@@ -24,21 +24,21 @@ public class ListSyntaxHighlighterFactoryTest {
 
 			@Override
 			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
-				return DefaultSyntaxHighlighter.newBuilder().withComma(AnsiSyntaxHightlight.GREEN).build();
+				return DefaultSyntaxHighlighter.newBuilder().withComma(AnsiSyntaxHighlight.GREEN).build();
 			}
 			
 		});
 		
 		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter(null);
 		assertFalse(syntaxHighlighter instanceof ListSyntaxHighlighter);
-		assertEquals(AnsiSyntaxHightlight.build(AnsiSyntaxHightlight.GREEN), syntaxHighlighter.forComma());
+		assertEquals(AnsiSyntaxHighlight.build(AnsiSyntaxHighlight.GREEN), syntaxHighlighter.forComma());
 	}
 
 	@Test
 	public void testMultiple() {
 		SyntaxHighlightingDecorator factory = new SyntaxHighlightingDecorator();
 		
-		String[] colors = new String[]{AnsiSyntaxHightlight.RED, AnsiSyntaxHightlight.GREEN};
+		String[] colors = new String[]{AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN};
 		
 		for(final String str : colors) {
 			factory.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
@@ -52,6 +52,6 @@ public class ListSyntaxHighlighterFactoryTest {
 		
 		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter(null);
 		assertTrue(syntaxHighlighter instanceof ListSyntaxHighlighter);
-		assertEquals(AnsiSyntaxHightlight.build(AnsiSyntaxHightlight.RED, AnsiSyntaxHightlight.GREEN), syntaxHighlighter.forComma());
+		assertEquals(AnsiSyntaxHighlight.build(AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN), syntaxHighlighter.forComma());
 	}
 }

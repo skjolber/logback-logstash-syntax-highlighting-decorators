@@ -16,4 +16,5 @@ public class TestLogging {
     	logger.warn("Warn message");
     	logger.error("Error message");
     }
+
 }
