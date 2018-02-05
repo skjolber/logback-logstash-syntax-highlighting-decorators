@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/skjolber/logback-logstash-syntax-highlighting-decorators.svg?branch=master)](https://travis-ci.org/skjolber/logback-logstash-syntax-highlighting-decorators)
+
 # logback-logstash-syntax-highlighting-decorators
 Additional `Decorators` for [logstash-logback-encoder].
 
