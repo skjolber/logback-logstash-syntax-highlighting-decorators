@@ -1,16 +1,17 @@
 [![Build Status](https://travis-ci.org/skjolber/logback-logstash-syntax-highlighting-decorators.svg?branch=master)](https://travis-ci.org/skjolber/logback-logstash-syntax-highlighting-decorators)
 
 # logback-logstash-syntax-highlighting-decorators
-Additional `Decorators` for [logstash-logback-encoder].
+ANSI syntax highlighting for [logstash-logback-encoder] JSON output.
 
 Features:
   * Syntax highlighting (and pretty printing)
-  * Special field handling
-    * Level: warn and error
+  * Special field handling 
+    * Level: trace, debug, info, warn and error
+    * Message
 
-The primary use-case for this tool is coloring JSON console-output during local development / unit testing.
+The primary use-case for this tool is coloring JSON console-output during __local development / unit testing__.
 
-In production rather configure an encoder without a `Decorator` and apply proper visualization tools like [Kibana] - use [conditional processing] to differentiate between different environments.
+In production rather configure an encoder without a `Decorator` and apply proper visualization tools like [Kibana]. Use [conditional processing] to differentiate between different environments in [Logback] configuration.
 
 ## License
 [Apache 2.0]
@@ -61,7 +62,7 @@ Define your own colors using `ConfigurableSyntaxHighlighter`:
 </jsonGeneratorDecorator>
  ```
 
-and space-separated foreground, background and style keys. For special focus on fields `message` and `level`, use the `LogLevelSyntaxHighlighterFactory`:
+and space-separated foreground, background and style keys. For special handling of fields `message` and `level`, use the `LogLevelSyntaxHighlighterFactory`:
 
 ```xml
 <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator"/>
@@ -113,7 +114,7 @@ and space-separated foreground, background and style keys. For special focus on 
 
 
 ## Details
-The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>` elements. The colors are applied in natural order. Highlighters not wanting to contribute to the current JSON event are expected to return an ANSI reset (including escaping).
+The `SyntaxHighlightingDecorator` supports a list of `<syntaxHighlighterFactory>` elements. The colors are applied in chronological order. Highlighters not wanting to contribute to the current JSON event are expected to return an ANSI reset (including escaping).
 
 ## Tips and tricks
 Exclude fields with low information value during testing. For example: 
@@ -144,4 +145,4 @@ Exclude fields with low information value during testing. For example:
 [logstash-logback-encoder]:	https://github.com/logstash/logstash-logback-encoder
 [Kibana]:                   https://www.elastic.co/products/kibana
 [conditional processing]:	https://logback.qos.ch/manual/configuration.html#conditional
-
+[Logback]:					https://github.com/qos-ch/logback
