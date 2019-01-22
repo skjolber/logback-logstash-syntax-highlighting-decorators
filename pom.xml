@@ -47,7 +47,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 
-		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
+		<logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
 		<jackson-syntax-highlight.version>1.0.3</jackson-syntax-highlight.version>
 
 		<jackson.version>2.9.5</jackson.version>
