@@ -23,8 +23,14 @@ The project is based on [Maven] and is available at central Maven repository.
 <dependency>
     <groupId>com.github.skjolber.logback-logstash-syntax-highlighting-decorators</groupId>
     <artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
 </dependency>
+```
+
+or for Gradle
+
+```groovy
+compile ("com.github.skjolber.logback-logstash-syntax-highlighting-decorators:logback-logstash-syntax-highlighting-decorators:1.0.3")
 ```
 
 # Usage
@@ -130,8 +136,7 @@ Exclude fields with low information value during testing. For example:
 ```
 
 # History
- - [1.0.2]: Update Jackson dependency due to security issue
- - 1.0.1: Update Jackson dependency due to security issue
+ - 1.0.1-1.0.3: Update Jackson dependency due to security issue
  - 1.0.0: Initial version
 
 [Apache 2.0]:          		http://www.apache.org/licenses/LICENSE-2.0.html
