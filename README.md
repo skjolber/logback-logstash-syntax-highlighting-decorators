@@ -72,7 +72,7 @@ and space-separated foreground, background and style keys. For special handling 
 
 ```xml
 <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator">
-    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighter">
+    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory">
         <level>
             <info>green</info>
             <warning>yellow</warning>
