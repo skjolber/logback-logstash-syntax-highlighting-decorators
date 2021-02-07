@@ -83,6 +83,40 @@ and space-separated foreground, background and style keys. For special handling 
 </jsonGeneratorDecorator>
 ```
 
+By default, this library prettifies the json logs. However, to log unprettified json, you can override the default 
+by adding the `<pretty> ... </pretty>` tag/attribute to the `syntaxHighlighterFactory` block;
+
+Examples:
+```xml
+<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator">
+    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.ConfigurableSyntaxHighlighterFactory">
+        
+        <!-- other attributes -->
+        
+        <pretty>false</pretty>
+    </syntaxHighlighterFactory>
+</jsonGeneratorDecorator>
+```
+
+```xml
+<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator">
+    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory">
+        
+        <!-- other attributes -->
+        
+        <pretty>false</pretty>
+    </syntaxHighlighterFactory>
+</jsonGeneratorDecorator>
+```
+
+To print prettified json, simply remove the `<pretty> ... </pretty>` attribute or st its value to true;
+```xml
+<pretty>true</pretty>
+```
+
+- NOTE: Setting any non-boolean value to the `<pretty> ... </pretty>` option will always default to `false`
+and will produce unprettified json logs.
+
 ### Foreground color
 | Key | Text color |
 | ----- | ----------- |
