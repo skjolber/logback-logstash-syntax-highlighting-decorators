@@ -22,14 +22,7 @@ public class SyntaxHighlightingDecoratorTest {
 		SyntaxHighlightingDecorator decorator = new SyntaxHighlightingDecorator();
 		
 		final SubtreeJsonStreamContextListener listener = new SubtreeJsonStreamContextListener();
-		decorator.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
-
-			@Override
-			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
-				return listener;
-			}
-			
-		});
+		decorator.addSyntaxHighlighterFactory(generator -> listener);
 		
 		StringWriter writer = new StringWriter();
 		JsonGenerator vanilla = new JsonFactory().createGenerator(writer);
@@ -50,23 +43,9 @@ public class SyntaxHighlightingDecoratorTest {
 		SyntaxHighlightingDecorator decorator = new SyntaxHighlightingDecorator();
 		
 		final SubtreeJsonStreamContextListener first = new SubtreeJsonStreamContextListener();
-		decorator.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
-
-			@Override
-			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
-				return first;
-			}
-			
-		});
-		final SubtreeJsonStreamContextListener second = new SubtreeJsonStreamContextListener();
-		decorator.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
-
-			@Override
-			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
-				return second;
-			}
-			
-		});
+		decorator.addSyntaxHighlighterFactory(generator -> first);
+		final SubtreeJsonStreamContextListener second = new SubtreeJsonStreamContextListener(false);
+		decorator.addSyntaxHighlighterFactory(generator -> second);
 		
 		StringWriter writer = new StringWriter();
 		JsonGenerator vanilla = new JsonFactory().createGenerator(writer);
@@ -79,8 +58,12 @@ public class SyntaxHighlightingDecoratorTest {
 		decorated.writeStartObject(); 
 		assertEquals(1, first.getLevel());
 		assertEquals(1, second.getLevel());
+		assertEquals("true", first.forPretty());
+		assertEquals("false", second.forPretty());
 		decorated.writeEndObject();
 		assertEquals(0, first.getLevel());
 		assertEquals(0, second.getLevel());
+		assertEquals("true", first.forPretty());
+		assertEquals("false", second.forPretty());
 	}
 }

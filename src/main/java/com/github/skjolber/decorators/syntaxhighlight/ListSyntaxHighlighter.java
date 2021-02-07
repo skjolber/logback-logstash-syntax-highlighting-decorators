@@ -92,6 +92,12 @@ public class ListSyntaxHighlighter implements SyntaxHighlighter {
 	}
 
 	@Override
+	public String forPretty() {
+		// pretty is not applicable here, so just ignore
+		return "";
+	}
+
+	@Override
 	public String forWhitespace() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(CLEAR_START);

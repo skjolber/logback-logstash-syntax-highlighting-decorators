@@ -17,17 +17,42 @@ import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
 public class SubtreeJsonStreamContextListener implements JsonStreamContextListener, SyntaxHighlighter {
 
-	private SyntaxHighlighter base = new DefaultSyntaxHighlighter();
-	
-	private SyntaxHighlighter numberField = DefaultSyntaxHighlighter
+	private int level = 0;
+
+	private final SyntaxHighlighter base;
+	private final SyntaxHighlighter numberField;
+	private SyntaxHighlighter delegate;
+
+	/**
+	 * Default Listener uses a pretty SyntaxHighlighter
+	 */
+	public SubtreeJsonStreamContextListener(){
+		base = new DefaultSyntaxHighlighter();
+
+		numberField = DefaultSyntaxHighlighter
 				.newBuilder()
 				.withBackground(AnsiSyntaxHighlight.BACKGROUND_RED)
 				.build();
-	
-	private SyntaxHighlighter delegate = base;
-	
-	private int level = 0;
-	
+
+		delegate = base;
+	}
+
+	/**
+	 * Listener uses a pretty SyntaxHighlighter if [ {@code isPretty = true} ]
+	 * otherwise the syntax will be flat
+	 * @param isPretty flag that determines whether json should be prettified or not
+	 */
+	public SubtreeJsonStreamContextListener(boolean isPretty){
+		base = new DefaultSyntaxHighlighter(isPretty);
+
+		numberField = DefaultSyntaxHighlighter
+				.newBuilder()
+				.withBackground(AnsiSyntaxHighlight.BACKGROUND_RED)
+				.build();
+
+		delegate = base;
+	}
+
 	public SyntaxHighlighter field(JsonStreamContext context) {
 		if(context.pathAsPointer().toString().equals("/object")) {
 			return numberField;
@@ -84,6 +109,11 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 	@Override
 	public String forComma() {
 		return delegate.forComma();
+	}
+
+	@Override
+	public String forPretty() {
+		return delegate.forPretty();
 	}
 
 	@Override

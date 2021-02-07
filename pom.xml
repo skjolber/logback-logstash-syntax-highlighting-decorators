@@ -48,7 +48,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 
 		<logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
-		<jackson-syntax-highlight.version>1.0.5</jackson-syntax-highlight.version>
+		<jackson-syntax-highlight.version>1.0.6-SNAPSHOT</jackson-syntax-highlight.version>
 
 		<jackson.version>2.10.1</jackson.version>
 		<logback.version>1.2.3</logback.version>
@@ -214,7 +214,7 @@
 			<!-- mvn -P release release:perform -->
 			<id>release</id>
 			<properties>
-				<!-- this is useful when the desired key is not the default (first) export 
+				<!-- this is useful when the desired key is not the default (first) export
 					GPG_KEY_NAME=ABCDEF01 -->
 				<gpg.executable>gpg</gpg.executable>
 				<gpg.keyname>${env.GPG_KEY_NAME}</gpg.keyname>

@@ -70,6 +70,10 @@ import net.logstash.logback.encoder.org.apache.commons.lang.StringEscapeUtils;
  * 			<td>background</td>
  * 			<td>Background color for all fields</td>
  * 		</tr>
+ * 		<tr>
+ * 			<td>pretty</td>
+ * 			<td>Flag that determines the application of pretty formatting for the entire object</td>
+ * 		</tr>
  * 	</tbody>
  * </table>
  * 
@@ -89,7 +93,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 	}
 
 	protected static String[] parseColors(String text) {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		
 		String[] splits = text.split("\\s+");
 		
@@ -100,8 +104,8 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 				result.add(code);
 			}
 		}
-		
-		return result.toArray(new String[result.size()]);
+
+		return result.toArray(new String[0]);
 	}
 
 	protected static String parseColor(String split) {
@@ -189,6 +193,10 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 
 	public void setComma(String comma) {
 		builder.withComma(parseColors(comma));
+	}
+
+	public void setPretty(String pretty) {
+		builder.withPretty(Boolean.valueOf(pretty));
 	}
 
 	public void setBackground(String background) {

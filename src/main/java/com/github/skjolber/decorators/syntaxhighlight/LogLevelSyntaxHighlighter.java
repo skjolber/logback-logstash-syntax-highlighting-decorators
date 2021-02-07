@@ -39,6 +39,11 @@ public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 	}
 
 	@Override
+	public String forPretty() {
+		return this.delegate.forPretty();
+	}
+
+	@Override
 	public String forFieldName(String value) {
 		this.logLevelField = "level".equals(value);
 		this.messageField = "message".equals(value);
@@ -52,16 +57,17 @@ public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 			logLevelField = false;
 			
 			if(string != null) {
-				if(string.equals("TRACE")) {
-					return trace;
-				} else if(string.equals("DEBUG")) {
-					return debug;
-				} else if(string.equals("INFO")) {
-					return info;
-				} else if(string.equals("WARN")) {
-					return warn;
-				} else if(string.equals("ERROR")) {
-					return error;
+				switch (string) {
+					case "TRACE":
+						return trace;
+					case "DEBUG":
+						return debug;
+					case "INFO":
+						return info;
+					case "WARN":
+						return warn;
+					case "ERROR":
+						return error;
 				}
 			}
 		} else if(messageField) {
