@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.skjolber.logback-logstash-syntax-highlighting-decorators</groupId>
 	<artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.4</version>
 
 	<name>logback-logstash-syntax-highlighting-decorators</name>
 	<description>Additional decorators for logstash-logback-encoder</description>
@@ -32,7 +32,7 @@
 		<connection>scm:git:git@github.com:skjolber/logback-logstash-syntax-highlighting-decorators.git</connection>
 		<developerConnection>scm:git:git@github.com:skjolber/logback-logstash-syntax-highlighting-decorators.git</developerConnection>
 		<url>git@github.com:skjolber/logback-logstash-syntax-highlighting-decorators.git</url>
-		<tag>HEAD</tag>
+		<tag>logback-logstash-syntax-highlighting-decorators-1.0.4</tag>
 	</scm>
 
 	<issueManagement>
