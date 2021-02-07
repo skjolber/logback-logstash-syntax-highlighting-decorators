@@ -109,7 +109,7 @@ Examples:
 </jsonGeneratorDecorator>
 ```
 
-To print prettified json, simply remove the `<pretty> ... </pretty>` attribute or st its value to true;
+To print prettified json, simply remove the `<pretty> ... </pretty>` attribute or set its value to true;
 ```xml
 <pretty>true</pretty>
 ```
