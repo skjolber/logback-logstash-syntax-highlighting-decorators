@@ -1,7 +1,7 @@
 package com.github.skjolber.decorators.syntaxhighlight;
 
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.AnsiSyntaxHighlight;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 
 public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 

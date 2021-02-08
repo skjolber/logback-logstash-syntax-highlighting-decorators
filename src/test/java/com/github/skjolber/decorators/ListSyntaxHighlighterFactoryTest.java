@@ -10,9 +10,9 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
 import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.AnsiSyntaxHighlight;
+import com.github.skjolber.jackson.jsh.highlighter.DefaultSyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 
 public class ListSyntaxHighlighterFactoryTest {
 

@@ -6,10 +6,10 @@ import java.util.List;
 import org.apache.commons.text.StringEscapeUtils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter.Builder;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.AnsiSyntaxHighlight;
+import com.github.skjolber.jackson.jsh.highlighter.DefaultSyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.DefaultSyntaxHighlighter.Builder;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 
 /**
  * Configurable syntax highlighter factory.

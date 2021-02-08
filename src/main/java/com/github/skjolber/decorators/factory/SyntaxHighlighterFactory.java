@@ -1,7 +1,7 @@
 package com.github.skjolber.decorators.factory;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 
 /**
  * Factory interface for {@linkplain SyntaxHighlighter}. 

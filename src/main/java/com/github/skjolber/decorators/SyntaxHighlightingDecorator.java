@@ -9,8 +9,8 @@ import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
 import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.JsonStreamContextListener;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.JsonStreamContextListener;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.SyntaxHighlightingJsonGenerator;
 
 import net.logstash.logback.decorate.JsonGeneratorDecorator;

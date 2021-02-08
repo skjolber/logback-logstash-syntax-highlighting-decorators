@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonStreamContext;
-import com.github.skjolber.jackson.jsh.JsonStreamContextListener;
+import com.github.skjolber.jackson.jsh.highlighter.JsonStreamContextListener;
 
 public class ListJsonStreamContextListener implements JsonStreamContextListener {
 

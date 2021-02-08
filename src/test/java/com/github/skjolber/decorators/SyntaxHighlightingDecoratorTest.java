@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
 import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 
 public class SyntaxHighlightingDecoratorTest {
 

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.AnsiSyntaxHighlight;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 
 public class ListSyntaxHighlighter implements SyntaxHighlighter {
 

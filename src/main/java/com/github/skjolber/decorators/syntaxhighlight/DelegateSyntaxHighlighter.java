@@ -3,7 +3,7 @@ package com.github.skjolber.decorators.syntaxhighlight;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import com.github.skjolber.jackson.jsh.highlighter.SyntaxHighlighter;
 
 public abstract class DelegateSyntaxHighlighter implements SyntaxHighlighter {
 
