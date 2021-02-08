@@ -3,13 +3,13 @@ package com.github.skjolber.decorators.factory;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter.Builder;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
-
-import net.logstash.logback.encoder.org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * Configurable syntax highlighter factory.
