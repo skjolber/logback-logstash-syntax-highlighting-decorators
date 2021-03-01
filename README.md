@@ -23,14 +23,14 @@ The project is based on [Maven] and is available at central Maven repository.
 <dependency>
     <groupId>com.github.skjolber.logback-logstash-syntax-highlighting-decorators</groupId>
     <artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 </dependency>
 ```
 
 or for Gradle
 
 ```groovy
-compile ("com.github.skjolber.logback-logstash-syntax-highlighting-decorators:logback-logstash-syntax-highlighting-decorators:1.0.4")
+compile ("com.github.skjolber.logback-logstash-syntax-highlighting-decorators:logback-logstash-syntax-highlighting-decorators:1.0.5")
 ```
 
 # Usage
