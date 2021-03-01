@@ -24,7 +24,12 @@
 					</level>
 					<message>highIntensity blue</message>
  				</syntaxHighlighterFactory>
+				<prettyPrint>true</prettyPrint>
 			</jsonGeneratorDecorator>
+		    <fieldNames>
+		        <levelValue>[ignore]</levelValue>
+		        <version>[ignore]</version>
+		    </fieldNames>
 		</encoder>
     </appender>
 

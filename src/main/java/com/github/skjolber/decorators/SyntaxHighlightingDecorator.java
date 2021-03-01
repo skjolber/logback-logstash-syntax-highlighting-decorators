@@ -18,7 +18,8 @@ import net.logstash.logback.decorate.JsonGeneratorDecorator;
 public class SyntaxHighlightingDecorator extends ListSyntaxHighlighterFactory implements JsonGeneratorDecorator {
 
 	protected SyntaxHighlighterFactory defaultSyntaxHighlighterFactory;
-
+	protected boolean prettyPrint = true;
+	
 	public SyntaxHighlightingDecorator(SyntaxHighlighterFactory defaultSyntaxHighlighterFactory) {
 		this.defaultSyntaxHighlighterFactory = defaultSyntaxHighlighterFactory;
 	}
@@ -43,16 +44,16 @@ public class SyntaxHighlightingDecorator extends ListSyntaxHighlighterFactory im
     		}
     		if(!listeners.isEmpty()) {
     			if(listeners.size() == 1) {
-    	            return new SyntaxHighlightingJsonGenerator(generator, instance, listeners.get(0));
+    	            return new SyntaxHighlightingJsonGenerator(generator, instance, listeners.get(0), prettyPrint);
     			}
-                return new SyntaxHighlightingJsonGenerator(generator, instance, new ListJsonStreamContextListener(listeners));
+                return new SyntaxHighlightingJsonGenerator(generator, instance, new ListJsonStreamContextListener(listeners), prettyPrint);
     		}
     	}
     	
     	if(instance instanceof JsonStreamContextListener) {
-            return new SyntaxHighlightingJsonGenerator(generator, instance, (JsonStreamContextListener)instance);
+            return new SyntaxHighlightingJsonGenerator(generator, instance, (JsonStreamContextListener)instance, prettyPrint);
     	}
-        return new SyntaxHighlightingJsonGenerator(generator, instance);
+        return new SyntaxHighlightingJsonGenerator(generator, instance, prettyPrint);
 
     }
 	
@@ -71,4 +72,9 @@ public class SyntaxHighlightingDecorator extends ListSyntaxHighlighterFactory im
 	public void addSyntaxHighlighterFactory(SyntaxHighlighterFactory factory) {
 		factories.add(factory);
 	}
+	
+	public void setPrettyPrint(String prettyPrint) {
+		this.prettyPrint = Boolean.parseBoolean(prettyPrint);
+	}
+	
 }

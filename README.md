@@ -83,6 +83,16 @@ and space-separated foreground, background and style keys. For special handling 
 </jsonGeneratorDecorator>
 ```
 
+#### Pretty-printing
+Pretty-printing (with newline + indent) is enabled by default. To disable it, a `prettyPrint`-element under `SyntaxHighlightingDecorator` like so:
+
+
+```xml
+<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
+	<prettyPrint>false</prettyPrint>
+</jsonGeneratorDecorator>
+```
+
 ### Foreground color
 | Key | Text color |
 | ----- | ----------- |
@@ -136,6 +146,7 @@ Exclude fields with low information value during testing. For example:
 ```
 
 # History
+ - 1.0.5: Add option for single-line output
  - 1.0.1-1.0.4: Update Jackson dependency due to security issue and dependency updates
  - 1.0.0: Initial version
 
