@@ -51,7 +51,7 @@ The default decorator is aware of the log-level and highlights `WARN` and `ERROR
 Define your own colors using `ConfigurableSyntaxHighlighter`:
 
 ```xml
-<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator">
+<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
     <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.ConfigurableSyntaxHighlighterFactory">
         <stringValue>blue</stringValue>
         <numberValue>black highIntensity</numberValue>
@@ -71,7 +71,7 @@ Define your own colors using `ConfigurableSyntaxHighlighter`:
 and space-separated foreground, background and style keys. For special handling of fields `message` and `level`, use the `LogLevelSyntaxHighlighterFactory`:
 
 ```xml
-<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighligtingDecorator">
+<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
     <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory">
         <level>
             <info>green</info>
