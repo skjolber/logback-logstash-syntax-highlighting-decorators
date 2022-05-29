@@ -6,14 +6,14 @@
             <!-- remove unnecessary fields in testing -->
 			<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
 				<syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory">
-					<stringValue>blue</stringValue>
+					<stringValue>cyan</stringValue>
 					<numberValue>black highIntensity</numberValue>
-					<fieldName>red</fieldName>
+					<fieldName>default</fieldName>
 					<binaryValue>yellow</binaryValue>
 					<booleanValue>cyan</booleanValue>
 					<nullValue>black</nullValue>
-					<curlyBrackets>green</curlyBrackets>
-					<squareBrackets>green</squareBrackets>
+					<curlyBrackets>black</curlyBrackets>
+					<squareBrackets>black</squareBrackets>
 					<colon>green</colon>
 					<whitespace>green</whitespace>
 					<comma>green</comma>

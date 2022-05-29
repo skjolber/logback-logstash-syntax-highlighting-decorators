@@ -43,7 +43,7 @@ public class LogLevelSyntaxHighlighterFactory extends ConfigurableSyntaxHighligh
 	protected String message = LogLevelSyntaxHighlighter.MESSAGE;
 	
 	public LogLevelSyntaxHighlighterFactory() {
-		builder = DefaultSyntaxHighlighter.newBuilderWithDefaultColors();
+		builder = DefaultSyntaxHighlighter.newBuilder();
 	}
 	
 	@Override
