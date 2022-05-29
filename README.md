@@ -13,8 +13,9 @@ The primary use-case for this tool is coloring JSON console-output during __loca
 
 In production rather configure an encoder without a `Decorator` and apply proper visualization tools like [Kibana]. Use [conditional processing] to differentiate between different environments in [Logback] configuration.
 
-![Example](docs/logLevel.png?raw=true "Example")
+## Example output
 
+![Example](docs/logLevel.png?raw=true "Example")
 
 ## License
 [Apache 2.0]
