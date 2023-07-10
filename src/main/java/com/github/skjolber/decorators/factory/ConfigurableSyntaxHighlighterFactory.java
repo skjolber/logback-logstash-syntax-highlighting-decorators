@@ -14,7 +14,8 @@ import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 /**
  * Configurable syntax highlighter factory.
  * <br><br>
- * <table summary="" style="border: 1px solid">
+ * <table  style="border: 1px solid">
+ *  <caption>List of supported keys</caption>
  * 	<thead>
  * 		<tr>
  * 			<th>Key</th>
