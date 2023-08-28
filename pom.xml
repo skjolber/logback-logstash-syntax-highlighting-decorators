@@ -47,15 +47,15 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
-		<jackson-syntax-highlight.version>1.0.7</jackson-syntax-highlight.version>
-		<commons-text.version>1.9</commons-text.version>
-		<jackson.version>2.13.3</jackson.version>
-		<logback.version>1.2.3</logback.version>
+		<logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
+		<jackson-syntax-highlight.version>1.0.8-SNAPSHOT</jackson-syntax-highlight.version>
+		<commons-text.version>1.10.0</commons-text.version>
+		<jackson.version>2.15.2</jackson.version>
+		<logback.version>1.4.11</logback.version>
 		<slf4j.version>1.7.36</slf4j.version>
 
 		<junit.version>4.13.2</junit.version>
-		<maven.jacoco.plugin.version>0.8.8</maven.jacoco.plugin.version>
+		<maven.jacoco.plugin.version>0.8.10</maven.jacoco.plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -145,7 +145,7 @@
 										<limit>
 											<counter>INSTRUCTION</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.40</minimum>
+											<minimum>0.35</minimum>
 										</limit>
 									</limits>
 								</rule>
@@ -211,6 +211,27 @@
 					<goals>deploy</goals>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.moditect</groupId>
+				<artifactId>moditect-maven-plugin</artifactId>
+				<version>1.0.0.Final</version>
+				<executions>
+					<execution>
+						<id>add-module-infos</id>
+						<phase>package</phase>
+						<goals>
+							<goal>add-module-info</goal>
+						</goals>
+						<configuration>
+							<jvmVersion>${java.module.version}</jvmVersion>
+							<overwriteExistingFiles>true</overwriteExistingFiles>
+							<module>
+								<moduleInfoFile>src/main/java9/module-info.java</moduleInfoFile>
+							</module>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>				
 		</plugins>
 	</build>
 

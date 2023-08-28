@@ -4,9 +4,10 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
 /**
- * Factory interface for {@linkplain SyntaxHighlighter}. 
- * <br><br>
- * Instances of the factory are required to be thread safe, the generated syntax highlighters not.
+ * Factory interface for {@linkplain SyntaxHighlighter}. <br>
+ * <br>
+ * Instances of the factory are required to be thread safe, the generated syntax
+ * highlighters not.
  */
 
 public interface SyntaxHighlighterFactory {
@@ -18,6 +19,6 @@ public interface SyntaxHighlighterFactory {
 	 * 
 	 * @return highlighter a newly created syntax highlighter
 	 */
-	
+
 	SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator);
 }

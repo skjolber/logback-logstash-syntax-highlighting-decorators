@@ -14,18 +14,18 @@ public class ListSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
 	public void addSyntaxHighlighterFactory(SyntaxHighlighterFactory factory) {
 		factories.add(factory);
 	}
-	
+
 	public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
-		if(factories.size() == 1) {
+		if (factories.size() == 1) {
 			return factories.get(0).createSyntaxHighlighter(generator);
 		}
-		
+
 		List<SyntaxHighlighter> highlighterList = new ArrayList<>(factories.size());
-		
-		for(SyntaxHighlighterFactory factory : factories) {
+
+		for (SyntaxHighlighterFactory factory : factories) {
 			highlighterList.add(factory.createSyntaxHighlighter(generator));
 		}
-		
+
 		return new ListSyntaxHighlighter(highlighterList);
 	}
 

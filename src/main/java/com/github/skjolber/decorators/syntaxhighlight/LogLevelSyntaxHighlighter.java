@@ -21,16 +21,17 @@ public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 
 	protected boolean messageField;
 	protected String message;
-	
-	public LogLevelSyntaxHighlighter(SyntaxHighlighter delegate, String trace, String debug, String info, String warn, String error, String message) {
+
+	public LogLevelSyntaxHighlighter(SyntaxHighlighter delegate, String trace, String debug, String info, String warn,
+			String error, String message) {
 		super(delegate);
-		
+
 		this.trace = trace;
 		this.debug = debug;
 		this.info = info;
 		this.warn = warn;
 		this.error = error;
-		
+
 		this.message = message;
 	}
 
@@ -42,31 +43,37 @@ public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 	public String forFieldName(String value) {
 		this.logLevelField = "level".equals(value);
 		this.messageField = "message".equals(value);
-		
+
 		return super.forFieldName(value);
 	}
-	
+
 	@Override
 	public String forString(String string) {
-		if(logLevelField) {
+		if (logLevelField) {
 			logLevelField = false;
-			
-			if(string != null) {
-				if(string.equals("TRACE")) {
-					return trace;
-				} else if(string.equals("DEBUG")) {
-					return debug;
-				} else if(string.equals("INFO")) {
-					return info;
-				} else if(string.equals("WARN")) {
-					return warn;
-				} else if(string.equals("ERROR")) {
-					return error;
+
+			if (string != null) {
+				switch(string) {
+					case "TRACE": {
+						return trace;
+					}
+					case "DEBUG": {
+						return debug;
+					}
+					case "INFO": {
+						return info;
+					}
+					case "WARN": {
+						return warn;
+					}
+					case "ERROR": {
+						return error;
+					}
 				}
 			}
-		} else if(messageField) {
+		} else if (messageField) {
 			messageField = false;
-			
+
 			return message;
 		}
 		return super.forString(string);
@@ -95,9 +102,9 @@ public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 	public void setError(String error) {
 		this.error = error;
 	}
-	
+
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 }
