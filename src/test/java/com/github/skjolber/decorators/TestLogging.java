@@ -8,13 +8,13 @@ public class TestLogging {
 
 	private final static Logger logger = LoggerFactory.getLogger(TestLogging.class);
 
-    @Test 
-    public void testLogger() {
-    	logger.trace("Trace message");
-    	logger.debug("Debug message");
-    	logger.info("Info message");
-    	logger.warn("Warn message");
-    	logger.error("Error message");
-    }
+	@Test
+	public void testLogger() {
+		logger.trace("Trace message");
+		logger.debug("Debug message");
+		logger.info("Info message");
+		logger.warn("Warn message");
+		logger.error("Error message");
+	}
 
 }

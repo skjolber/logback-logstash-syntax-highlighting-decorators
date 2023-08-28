@@ -9,3 +9,4 @@ module com.github.skjolber.decorators {
 	requires org.apache.commons.text;
 	requires org.slf4j;
 }
+

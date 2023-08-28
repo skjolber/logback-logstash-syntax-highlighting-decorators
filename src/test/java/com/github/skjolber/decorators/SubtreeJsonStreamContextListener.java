@@ -11,25 +11,25 @@ import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
 
 /**
  * 
- * Resolver which returns two different {@linkplain SyntaxHighlighter}s
- * based on the context location.
+ * Resolver which returns two different {@linkplain SyntaxHighlighter}s based on
+ * the context location.
  */
 
 public class SubtreeJsonStreamContextListener implements JsonStreamContextListener, SyntaxHighlighter {
 
 	private SyntaxHighlighter base = new DefaultSyntaxHighlighter();
-	
+
 	private SyntaxHighlighter numberField = DefaultSyntaxHighlighter
-				.newBuilder()
-				.withBackground(AnsiSyntaxHighlight.BACKGROUND_RED)
-				.build();
-	
+			.newBuilder()
+			.withBackground(AnsiSyntaxHighlight.BACKGROUND_RED)
+			.build();
+
 	private SyntaxHighlighter delegate = base;
-	
+
 	private int level = 0;
-	
+
 	public SyntaxHighlighter field(JsonStreamContext context) {
-		if(context.pathAsPointer().toString().equals("/object")) {
+		if (context.pathAsPointer().toString().equals("/object")) {
 			return numberField;
 		}
 
@@ -39,7 +39,7 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 	@Override
 	public void startObject(JsonStreamContext outputContext) {
 		this.delegate = field(outputContext);
-		
+
 		level++;
 	}
 
@@ -47,14 +47,14 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 	public void endObject(JsonStreamContext outputContext) {
 		// reset
 		this.delegate = base;
-		
+
 		level--;
 	}
 
 	@Override
 	public void startArray(JsonStreamContext outputContext) {
 		this.delegate = field(outputContext);
-		
+
 		level++;
 	}
 
@@ -62,10 +62,10 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 	public void endArray(JsonStreamContext outputContext) {
 		// reset
 		this.delegate = base;
-		
+
 		level--;
 	}
-	
+
 	@Override
 	public String forCurlyBrackets() {
 		return delegate.forCurlyBrackets();

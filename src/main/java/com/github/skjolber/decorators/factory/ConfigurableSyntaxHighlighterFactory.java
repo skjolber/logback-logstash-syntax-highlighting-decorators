@@ -10,7 +10,6 @@ import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter.Builder;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
-
 /**
  * Configurable syntax highlighter factory.
  * <br><br>
@@ -77,37 +76,38 @@ import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
  * 
  */
 
+
 public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
 
 	protected DefaultSyntaxHighlighter.Builder builder;
-	
+
 	public ConfigurableSyntaxHighlighterFactory() {
 		this(DefaultSyntaxHighlighter.newBuilder());
 	}
-	
+
 	public ConfigurableSyntaxHighlighterFactory(Builder builder) {
 		this.builder = builder;
 	}
 
 	protected static String[] parseColors(String text) {
 		List<String> result = new ArrayList<String>();
-		
+
 		String[] splits = text.split("\\s+");
-		
-		for(String split : splits) {
+
+		for (String split : splits) {
 			String code = parseColor(split);
-			
-			if(!code.equals(AnsiSyntaxHighlight.CLEAR)) {
+
+			if (!code.equals(AnsiSyntaxHighlight.CLEAR)) {
 				result.add(code);
 			}
 		}
-		
+
 		return result.toArray(new String[result.size()]);
 	}
 
 	protected static String parseColor(String split) {
 		String code;
-		if(split.startsWith("\\")) {
+		if (split.startsWith("\\")) {
 			code = StringEscapeUtils.escapeJava(split);
 		} else {
 			code = parseAnsi(split);
@@ -200,5 +200,5 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 	public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
 		return builder.build();
 	}
-	
+
 }

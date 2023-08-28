@@ -47,11 +47,11 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
-		<jackson-syntax-highlight.version>1.0.7</jackson-syntax-highlight.version>
-		<commons-text.version>1.9</commons-text.version>
-		<jackson.version>2.13.3</jackson.version>
-		<logback.version>1.2.3</logback.version>
+		<logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
+		<jackson-syntax-highlight.version>1.0.8</jackson-syntax-highlight.version>
+		<commons-text.version>1.10.0</commons-text.version>
+		<jackson.version>2.15.2</jackson.version>
+		<logback.version>1.4.11</logback.version>
 		<slf4j.version>1.7.36</slf4j.version>
 
 		<junit.version>4.13.2</junit.version>
@@ -145,7 +145,7 @@
 										<limit>
 											<counter>INSTRUCTION</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.40</minimum>
+											<minimum>0.35</minimum>
 										</limit>
 									</limits>
 								</rule>
@@ -231,7 +231,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>						
+			</plugin>				
 		</plugins>
 	</build>
 

@@ -20,7 +20,7 @@ public class SyntaxHighlightingDecoratorTest {
 	@Test
 	public void testSingle() throws IOException {
 		SyntaxHighlightingDecorator decorator = new SyntaxHighlightingDecorator();
-		
+
 		final SubtreeJsonStreamContextListener listener = new SubtreeJsonStreamContextListener();
 		decorator.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
 
@@ -28,27 +28,27 @@ public class SyntaxHighlightingDecoratorTest {
 			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
 				return listener;
 			}
-			
+
 		});
-		
+
 		StringWriter writer = new StringWriter();
 		JsonGenerator vanilla = new JsonFactory().createGenerator(writer);
-		
+
 		SyntaxHighlighter syntaxHighlighter = decorator.createSyntaxHighlighter(vanilla);
 		assertFalse(syntaxHighlighter instanceof ListSyntaxHighlighter);
-		
+
 		// check that the json stream context part is wired correctly
 		JsonGenerator decorated = decorator.decorate(vanilla);
-		decorated.writeStartObject(); 
+		decorated.writeStartObject();
 		assertEquals(1, listener.getLevel());
 		decorated.writeEndObject();
 		assertEquals(0, listener.getLevel());
 	}
-	
+
 	@Test
 	public void testMultiple() throws IOException {
 		SyntaxHighlightingDecorator decorator = new SyntaxHighlightingDecorator();
-		
+
 		final SubtreeJsonStreamContextListener first = new SubtreeJsonStreamContextListener();
 		decorator.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
 
@@ -56,7 +56,7 @@ public class SyntaxHighlightingDecoratorTest {
 			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
 				return first;
 			}
-			
+
 		});
 		final SubtreeJsonStreamContextListener second = new SubtreeJsonStreamContextListener();
 		decorator.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
@@ -65,18 +65,18 @@ public class SyntaxHighlightingDecoratorTest {
 			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
 				return second;
 			}
-			
+
 		});
-		
+
 		StringWriter writer = new StringWriter();
 		JsonGenerator vanilla = new JsonFactory().createGenerator(writer);
-		
+
 		SyntaxHighlighter syntaxHighlighter = decorator.createSyntaxHighlighter(vanilla);
 		assertTrue(syntaxHighlighter instanceof ListSyntaxHighlighter);
-		
+
 		// check that the json stream context part is wired correctly
 		JsonGenerator decorated = decorator.decorate(vanilla);
-		decorated.writeStartObject(); 
+		decorated.writeStartObject();
 		assertEquals(1, first.getLevel());
 		assertEquals(1, second.getLevel());
 		decorated.writeEndObject();

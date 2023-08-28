@@ -19,16 +19,16 @@ public class ListSyntaxHighlighterFactoryTest {
 	@Test
 	public void testSingle() {
 		ListSyntaxHighlighterFactory factory = new ListSyntaxHighlighterFactory();
-		
+
 		factory.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
 
 			@Override
 			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
 				return DefaultSyntaxHighlighter.newBuilder().withComma(AnsiSyntaxHighlight.GREEN).build();
 			}
-			
+
 		});
-		
+
 		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter(null);
 		assertFalse(syntaxHighlighter instanceof ListSyntaxHighlighter);
 		assertEquals(AnsiSyntaxHighlight.build(AnsiSyntaxHighlight.GREEN), syntaxHighlighter.forComma());
@@ -37,21 +37,22 @@ public class ListSyntaxHighlighterFactoryTest {
 	@Test
 	public void testMultiple() {
 		SyntaxHighlightingDecorator factory = new SyntaxHighlightingDecorator();
-		
-		String[] colors = new String[]{AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN};
-		
-		for(final String str : colors) {
+
+		String[] colors = new String[] { AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN };
+
+		for (final String str : colors) {
 			factory.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
-	
+
 				@Override
 				public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
 					return DefaultSyntaxHighlighter.newBuilder().withComma(str).build();
 				}
 			});
 		}
-		
+
 		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter(null);
 		assertTrue(syntaxHighlighter instanceof ListSyntaxHighlighter);
-		assertEquals(AnsiSyntaxHighlight.build(AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN), syntaxHighlighter.forComma());
+		assertEquals(AnsiSyntaxHighlight.build(AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN),
+				syntaxHighlighter.forComma());
 	}
 }
