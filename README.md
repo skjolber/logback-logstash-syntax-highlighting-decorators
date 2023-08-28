@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/skjolber/logback-logstash-syntax-highlighting-decorators.svg?branch=master)](https://travis-ci.org/skjolber/logback-logstash-syntax-highlighting-decorators)
-
 # logback-logstash-syntax-highlighting-decorators
 ANSI syntax highlighting for [logstash-logback-encoder] JSON output.
 
@@ -11,7 +9,8 @@ Features:
 
 The primary use-case for this tool is coloring JSON console-output during __local development / unit testing__.
 
-In production rather configure an encoder without a `Decorator` and apply proper visualization tools like [Kibana]. Use [conditional processing] to differentiate between different environments in [Logback] configuration.
+In production rather configure an encoder without a `Decorator` and apply proper visualization tools like [Kibana]. 
+Use [conditional processing] to differentiate between different environments in [Logback] configuration.
 
 ## Example output
 
@@ -23,19 +22,44 @@ In production rather configure an encoder without a `Decorator` and apply proper
 # Obtain
 The project is based on [Maven] and is available at central Maven repository.
 
+<details>
+  <summary>Maven coordinates</summary>
+
+Add the property
+```xml
+<logback-logstash-syntax-highlighting-decorators.version>1.0.6</logback-logstash-syntax-highlighting-decorators.version>
+```
+
+then add
+
 ```xml
 <dependency>
     <groupId>com.github.skjolber.logback-logstash-syntax-highlighting-decorators</groupId>
     <artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
-    <version>1.0.6</version>
+    <version>${logback-logstash-syntax-highlighting-decorators.version}</version>
 </dependency>
 ```
+</details>
 
-or for Gradle
+or
+
+<details>
+  <summary>Gradle coordinates</summary>
+
+For
 
 ```groovy
-compile ("com.github.skjolber.logback-logstash-syntax-highlighting-decorators:logback-logstash-syntax-highlighting-decorators:1.0.6")
+ext {
+  logbackLogstashSyntaxHighlightingDecoratorsVersion = '1.0.6'
+}
 ```
+
+add
+
+```groovy
+implementation ("com.github.skjolber.logback-logstash-syntax-highlighting-decorators:logback-logstash-syntax-highlighting-decorators:${logbackLogstashSyntaxHighlightingDecoratorsVersion}")
+```
+</details>
 
 # Usage
 Add a [JsonGeneratorDecorator]:

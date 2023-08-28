@@ -10,71 +10,72 @@ import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
 import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter.Builder;
 import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
-
 /**
- * Configurable syntax highlighter factory. <br>
- * <br>
- * <table style="border: 1px solid">
- * <caption>Configuration options</caption>
- * <thead>
- * <tr>
- * <th>Key</th>
- * <th>Name</th>
- * </tr>
- * </thead> <tbody>
- * <tr>
- * <td>fieldName</td>
- * <td>Field name</td>
- * </tr>
- * <tr>
- * <td>binaryValue</td>
- * <td>Binary value</td>
- * </tr>
- * <tr>
- * <td>booleanValue</td>
- * <td>Boolean value</td>
- * </tr>
- * <tr>
- * <td>nullValue</td>
- * <td>Null value</td>
- * </tr>
- * <tr>
- * <td>numberValue</td>
- * <td>Number value</td>
- * </tr>
- * <tr>
- * <td>stringValue</td>
- * <td>Textual value</td>
- * </tr>
- * <tr>
- * <td>curlyBrackets</td>
- * <td>Object start / end</td>
- * </tr>
- * <tr>
- * <td>squareBrackets</td>
- * <td>Array start / end</td>
- * </tr>
- * <tr>
- * <td>colon</td>
- * <td>Field separator</td>
- * </tr>
- * <tr>
- * <td>whitespace</td>
- * <td>Whitespace</td>
- * </tr>
- * <tr>
- * <td>comma</td>
- * <td>Field entry separator</td>
- * </tr>
- * <tr>
- * <td>background</td>
- * <td>Background color for all fields</td>
- * </tr>
- * </tbody>
+ * Configurable syntax highlighter factory.
+ * <br><br>
+ * <table  style="border: 1px solid">
+ *  <caption>List of supported keys</caption>
+ * 	<thead>
+ * 		<tr>
+ * 			<th>Key</th>
+ * 			<th>Name</th>
+ * 		</tr>
+ * 	</thead>
+ * 	<tbody>
+ * 		<tr>
+ * 			<td>fieldName</td>
+ * 			<td>Field name</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>binaryValue</td>
+ * 			<td>Binary value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>booleanValue</td>
+ * 			<td>Boolean value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>nullValue</td>
+ * 			<td>Null value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>numberValue</td>
+ * 			<td>Number value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>stringValue</td>
+ * 			<td>Textual value</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>curlyBrackets</td>
+ * 			<td>Object start / end</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>squareBrackets</td>
+ * 			<td>Array start / end</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>colon</td>
+ * 			<td>Field separator</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>whitespace</td>
+ * 			<td>Whitespace</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>comma</td>
+ * 			<td>Field entry separator</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td>background</td>
+ * 			<td>Background color for all fields</td>
+ * 		</tr>
+ * 	</tbody>
  * </table>
  * 
  * 
  */
+
 
 public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
 
@@ -115,58 +116,35 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 	}
 
 	protected static String parseAnsi(String split) {
-		switch (split) {
-		case "black":
-			return AnsiSyntaxHighlight.BLACK;
-		case "red":
-			return AnsiSyntaxHighlight.RED;
-		case "green":
-			return AnsiSyntaxHighlight.GREEN;
-		case "yellow":
-			return AnsiSyntaxHighlight.YELLOW;
-		case "blue":
-			return AnsiSyntaxHighlight.BLUE;
-		case "magenta":
-			return AnsiSyntaxHighlight.MAGENTA;
-		case "cyan":
-			return AnsiSyntaxHighlight.CYAN;
-		case "white":
-			return AnsiSyntaxHighlight.WHITE;
-		case "default":
-			return AnsiSyntaxHighlight.DEFAULT;
+		switch(split) {
+		    case "black" : return AnsiSyntaxHighlight.BLACK;
+		    case "red" : return AnsiSyntaxHighlight.RED;
+		    case "green" : return AnsiSyntaxHighlight.GREEN;
+		    case "yellow" : return AnsiSyntaxHighlight.YELLOW;
+		    case "blue" : return AnsiSyntaxHighlight.BLUE;
+		    case "magenta" : return AnsiSyntaxHighlight.MAGENTA;
+		    case "cyan" : return AnsiSyntaxHighlight.CYAN;
+		    case "white" : return AnsiSyntaxHighlight.WHITE;
+		    case "default" : return AnsiSyntaxHighlight.DEFAULT;
+		    
+		    case "blackBackground" : return AnsiSyntaxHighlight.BACKGROUND_BLACK;
+		    case "redBackground" : return AnsiSyntaxHighlight.BACKGROUND_RED;
+		    case "greenBackground" : return AnsiSyntaxHighlight.BACKGROUND_GREEN;
+		    case "yellowBackground" : return AnsiSyntaxHighlight.BACKGROUND_YELLOW;
+		    case "blueBackground" : return AnsiSyntaxHighlight.BACKGROUND_BLUE;
+		    case "magentaBackground" : return AnsiSyntaxHighlight.BACKGROUND_MAGENTA;
+		    case "cyanBackground" : return AnsiSyntaxHighlight.BACKGROUND_CYAN;
+		    case "whiteBackground" : return AnsiSyntaxHighlight.BACKGROUND_WHITE;
+		    case "defaultBackground" : return AnsiSyntaxHighlight.BACKGROUND_DEFAULT;
 
-		case "blackBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_BLACK;
-		case "redBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_RED;
-		case "greenBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_GREEN;
-		case "yellowBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_YELLOW;
-		case "blueBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_BLUE;
-		case "magentaBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_MAGENTA;
-		case "cyanBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_CYAN;
-		case "whiteBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_WHITE;
-		case "defaultBackground":
-			return AnsiSyntaxHighlight.BACKGROUND_DEFAULT;
+		    case "highIntensity" : return AnsiSyntaxHighlight.HIGH_INTENSITY;
+		    case "lowIntensity" : return AnsiSyntaxHighlight.LOW_INTENSITY;
 
-		case "highIntensity":
-			return AnsiSyntaxHighlight.HIGH_INTENSITY;
-		case "lowIntensity":
-			return AnsiSyntaxHighlight.LOW_INTENSITY;
-
-		case "italic":
-			return AnsiSyntaxHighlight.ITALIC;
-		case "underline":
-			return AnsiSyntaxHighlight.UNDERLINE;
-		case "blink":
-			return AnsiSyntaxHighlight.BLINK;
-		}
-
+		    case "italic" : return AnsiSyntaxHighlight.ITALIC;
+		    case "underline" : return AnsiSyntaxHighlight.UNDERLINE;
+		    case "blink" : return AnsiSyntaxHighlight.BLINK;
+		}		
+		
 		throw new IllegalArgumentException("Unknown ANSI color '" + split + "'");
 	}
 
