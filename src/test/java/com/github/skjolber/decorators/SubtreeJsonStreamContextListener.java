@@ -19,8 +19,10 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 
 	private SyntaxHighlighter base = new DefaultSyntaxHighlighter();
 
-	private SyntaxHighlighter numberField = DefaultSyntaxHighlighter.newBuilder()
-			.withBackground(AnsiSyntaxHighlight.BACKGROUND_RED).build();
+	private SyntaxHighlighter numberField = DefaultSyntaxHighlighter
+			.newBuilder()
+			.withBackground(AnsiSyntaxHighlight.BACKGROUND_RED)
+			.build();
 
 	private SyntaxHighlighter delegate = base;
 
