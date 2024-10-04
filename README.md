@@ -1,6 +1,8 @@
 ![Build Status](https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators/actions/workflows/maven.yml/badge.svg) 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skjolber.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators.svg)](https://mvnrepository.com/artifact/com.github.skjolber.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators)
 
+# This project is currently maintained at [Entur](https://github.com/entur/logback-logstash-syntax-highlighting-decorators).
+
 # logback-logstash-syntax-highlighting-decorators
 ANSI syntax highlighting for [logstash-logback-encoder] JSON output.
 
